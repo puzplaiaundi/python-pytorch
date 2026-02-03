@@ -1,0 +1,15 @@
+texto,label
+"hola","saludo"
+"hola, ¿cómo estás?","saludo"
+"hola, que tal?","saludo"
+"buenos días","saludo"
+"buenas tardes","saludo"
+
+"tengo un error al pagar","soporte"
+"me sale un fallo en la web","soporte"
+
+"es muy caro","precio"
+"busco algo más barato","precio"
+
+"gracias por todo","general"
+"quiero información","general"

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Cliente IA</title>
+</head>
+<body>
+
+<textarea id="texto" placeholder="Escribe algo"></textarea>
+<button id="enviar">Enviar a la IA</button>
+
+<pre id="resultado"></pre>
+
+<script>
+document.getElementById("enviar").addEventListener("click", async () => {
+  const texto = document.getElementById("texto").value;
+
+  const response = await fetch("http://127.0.0.1:5000/api/ia/predict", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ texto })
+  });
+
+  const data = await response.json();
+  document.getElementById("resultado").textContent =
+    JSON.stringify(data, null, 2);
+});
+</script>
+
+</body>
+</html>
