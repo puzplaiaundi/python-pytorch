@@ -1,0 +1,87 @@
+const API_URL = "http://127.0.0.1:5000/api/ia/predict";
+
+document.getElementById("enviar").addEventListener("click", enviarMensaje);
+document.getElementById("mensaje").addEventListener("keypress", e => {
+  if (e.key === "Enter") enviarMensaje();
+});
+
+function enviarMensaje() {
+  const input = document.getElementById("mensaje");
+  const texto = input.value.trim();
+  if (!texto) return;
+
+  mostrarMensaje("usuario", texto);
+  input.value = "";
+
+  fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ texto })
+  })
+    .then(res => res.json())
+    .then(data => procesarRespuestaIA(data))
+    .catch(() => {
+      responderBot("⚠️ No puedo conectar con el servidor de IA.");
+    });
+}
+
+function procesarRespuestaIA(data) {
+  const { prediccion, confianza } = data;
+
+  if (confianza < 0.6) {
+    responderBot(
+      "No estoy seguro de haber entendido tu consulta. ¿Puedes darme más detalles?"
+    );
+    return;
+  }
+
+  switch (prediccion) {
+    case "saludo":
+      responderBot("¡Hola! 😊 ¿En qué puedo ayudarte?");
+      break;
+
+    case "soporte":
+      responderBot(
+        "Parece que tienes un problema técnico. Te paso con el equipo de soporte."
+      );
+      mostrarBoton("Contactar con soporte", "/soporte.html");
+      break;
+
+    case "precio":
+      responderBot(
+        "Parece una consulta sobre precios. Te paso con el departamento comercial."
+      );
+      mostrarBoton("Hablar con comercial", "/precios.html");
+      break;
+
+    case "general":
+      responderBot(
+        "Puedo darte información general. ¿Qué te gustaría saber exactamente?"
+      );
+      break;
+
+    default:
+      responderBot("No he podido clasificar tu consulta.");
+  }
+}
+
+function mostrarMensaje(quien, texto) {
+  const chat = document.getElementById("chat");
+  const div = document.createElement("div");
+  div.className = quien;
+  div.textContent = texto;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function responderBot(texto) {
+  mostrarMensaje("bot", texto);
+}
+
+function mostrarBoton(texto, enlace) {
+  const chat = document.getElementById("chat");
+  const btn = document.createElement("button");
+  btn.textContent = texto;
+  btn.onclick = () => window.location.href = enlace;
+  chat.appendChild(btn);
+}
