@@ -51,7 +51,6 @@ def main():
     vectorizer = TfidfVectorizer(
         lowercase=True,
         ngram_range=(1, 2),
-        stop_words="spanish",
         min_df=1
     )
     X = vectorizer.fit_transform(X_text).toarray()
