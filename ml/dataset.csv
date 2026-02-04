@@ -3,13 +3,19 @@ texto,label
 "hola, ¿cómo estás?","saludo"
 "hola, que tal?","saludo"
 "buenos días","saludo"
-"buenas tardes","saludo"
+
 
 "tengo un error al pagar","soporte"
 "me sale un fallo en la web","soporte"
+"no puedo acceder a mi cuenta","soporte"
+"la página no carga","soporte"
 
 "es muy caro","precio"
 "busco algo más barato","precio"
+"¿hay descuentos disponibles?","precio"
+"¿cuál es el costo?","precio"
 
 "gracias por todo","general"
 "quiero información","general"
+"¿qué servicios ofrecen?","general"
+"¿dónde están ubicados?","general"
