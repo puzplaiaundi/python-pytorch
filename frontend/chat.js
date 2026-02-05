@@ -1,13 +1,26 @@
+// ===============================
+// Configuración
+// ===============================
+
 const API_URL = "http://127.0.0.1:5000/api/ia/predict";
 
+// ===============================
+// Eventos
+// ===============================
 document.getElementById("enviar").addEventListener("click", enviarMensaje);
-document.getElementById("mensaje").addEventListener("keypress", e => {
-  if (e.key === "Enter") enviarMensaje();
+document.getElementById("mensaje").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    enviarMensaje();
+  }
 });
 
+// ===============================
+// Funciones principales
+// ===============================
 function enviarMensaje() {
   const input = document.getElementById("mensaje");
   const texto = input.value.trim();
+
   if (!texto) return;
 
   mostrarMensaje("usuario", texto);
@@ -15,11 +28,15 @@ function enviarMensaje() {
 
   fetch(API_URL, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json"
+    },
     body: JSON.stringify({ texto })
   })
-    .then(res => res.json())
-    .then(data => procesarRespuestaIA(data))
+    .then((response) => response.json())
+    .then((data) => {
+      procesarRespuestaIA(data);
+    })
     .catch(() => {
       responderBot("⚠️ No puedo conectar con el servidor de IA.");
     });
@@ -30,7 +47,7 @@ function procesarRespuestaIA(data) {
 
   if (confianza < 0.6) {
     responderBot(
-      "No estoy seguro de haber entendido tu consulta. ¿Puedes darme más detalles?"
+      "No estoy seguro de haber entendido tu consulta. ¿Puedes explicarla un poco más?"
     );
     return;
   }
@@ -41,17 +58,21 @@ function procesarRespuestaIA(data) {
       break;
 
     case "soporte":
-      responderBot(
-        "Parece que tienes un problema técnico. Te paso con el equipo de soporte."
-      );
-      mostrarBoton("Contactar con soporte", "/soporte.html");
+      responderBot("Parece que tienes un problema técnico.");
+      mostrarBoton("Contactar con soporte", () => {
+        responderBot(
+          "📞 Hemos registrado tu incidencia y el equipo de soporte se pondrá en contacto contigo."
+        );
+      });
       break;
 
     case "precio":
-      responderBot(
-        "Parece una consulta sobre precios. Te paso con el departamento comercial."
-      );
-      mostrarBoton("Hablar con comercial", "/precios.html");
+      responderBot("Es una consulta relacionada con precios.");
+      mostrarBoton("Hablar con comercial", () => {
+        responderBot(
+          "💼 El departamento comercial te contactará para darte más información."
+        );
+      });
       break;
 
     case "general":
@@ -61,10 +82,13 @@ function procesarRespuestaIA(data) {
       break;
 
     default:
-      responderBot("No he podido clasificar tu consulta.");
+      responderBot("No he podido clasificar tu mensaje.");
   }
 }
 
+// ===============================
+// Funciones auxiliares
+// ===============================
 function mostrarMensaje(quien, texto) {
   const chat = document.getElementById("chat");
   const div = document.createElement("div");
@@ -78,10 +102,10 @@ function responderBot(texto) {
   mostrarMensaje("bot", texto);
 }
 
-function mostrarBoton(texto, enlace) {
+function mostrarBoton(texto, accion) {
   const chat = document.getElementById("chat");
   const btn = document.createElement("button");
   btn.textContent = texto;
-  btn.onclick = () => window.location.href = enlace;
+  btn.onclick = accion;
   chat.appendChild(btn);
 }
