@@ -14,6 +14,8 @@ document.getElementById("mensaje").addEventListener("keypress", (e) => {
   }
 });
 
+
+
 // ===============================
 // Funciones principales
 // ===============================

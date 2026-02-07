@@ -1,23 +1,63 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Asistente IA</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
 
-<div id="chat-container">
-  <h3>🤖 Asistente IA</h3>
+#chat-container {
+  width: 400px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 15px;
+}
 
-  <div id="chat"></div>
+#chat {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px;
+}
+#chat div{
+  border-radius: 5px;
+  border: 1px solid #8d8c8c;
+  padding: 5px;
 
-  <div id="controls">
-    <input type="text" id="mensaje" placeholder="Escribe tu mensaje…">
-    <button id="enviar">Enviar</button>
-  </div>
-</div>
+}
 
-<script src="chat.js"></script>
-</body>
-</html>
+.usuario {
+  text-align: right;
+  margin: 5px 0;
+  color: #333;
+
+}
+
+.bot {
+  text-align: left;
+  margin: 5px 0;
+  color: #1b1b1b;
+  background-color: aquamarine;
+  border-radius: 5px;
+}
+
+.bot button {
+  margin-top: 5px;
+}
+
+#controls {
+  display: flex;
+  gap: 5px;
+}
+
+#mensaje {
+  flex: 1;
+  padding: 8px;
+}
+
+#enviar {
+  padding: 8px 12px;
+  cursor: pointer;
+}
