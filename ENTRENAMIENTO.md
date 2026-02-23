@@ -13,8 +13,8 @@ Una vez editado y guardado el dataset.csv, basta con ejecutar desde la carpeta \
 pyhton train_nn.py
 ```
 # 3) Arrancar el servidor.
-Basta con volver a arrancar el servidor desde la carpeta raiz para probar el nuevo entrenamiento.
-*Nota:* Combiene limpiar la cache con ctrl+f5 para asegurar su correcto funcionamiento.
+Basta con volver a arrancar el servidor desde la carpeta raiz para probar el nuevo entrenamiento.  
+**Nota:** Combiene limpiar la cache con ctrl+f5 para asegurar su correcto funcionamiento.
 ```python
 python run.py
 ```
