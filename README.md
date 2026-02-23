@@ -53,7 +53,7 @@ Pyhon run.py
 ```
 Esto arrancará el servidor en localhost, por defecto en el puerto 5000.
 ## 6) Ejecutar el cliente
-Ahora que el servidor está en marcha ya probar el cliente html que se encuentra en \frontend\index.html
+Ahora que el servidor está en marcha, ya se puede probar el cliente html que se encuentra en \frontend\index.html
 
 
     
