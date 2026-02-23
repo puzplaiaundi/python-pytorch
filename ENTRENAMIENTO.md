@@ -14,7 +14,7 @@ pyhton train_nn.py
 ```
 # 3) Arrancar el servidor.
 Basta con volver a arrancar el servidor desde la carpeta raiz para probar el nuevo entrenamiento.  
-**Nota:** Combiene limpiar la cache con ctrl+f5 para asegurar su correcto funcionamiento.
+**Nota:** Conviene limpiar la cache con ctrl+f5 para asegurar su correcto funcionamiento.
 ```python
 python run.py
 ```
