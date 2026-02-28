@@ -49,7 +49,7 @@ pip install -r requirements.txt
 ## 5) Arrancar el servidor
 Para arrancar el serivdor basta con ejecutar el archivo run.py:
 ```python
-Pyhon run.py
+Python run.py
 ```
 Esto arrancará el servidor en localhost, por defecto en el puerto 5000.
 ## 6) Ejecutar el cliente
